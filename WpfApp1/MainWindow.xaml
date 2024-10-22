@@ -1,0 +1,66 @@
+﻿<Window x:Class="WpfApp1.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp1"
+        mc:Ignorable="d"
+        Title="Faktury" Height="450" Width="800">
+    <Window.Resources>
+        <local:NettoToBruttoConverter x:Key="burito"></local:NettoToBruttoConverter>
+        <Style TargetType="TextBox" x:Key="brutto">
+            <Setter Property="Width" Value="175"></Setter>
+            <Setter Property="HorizontalAlignment" Value="Right"></Setter>
+            <Setter Property="Foreground" Value="DarkGreen"></Setter>
+            <Setter Property="Margin" Value="0, 5, 0, 6"></Setter>
+            <Setter Property="Text" Value="{Binding ElementName=netto, Path=Text}"></Setter>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding ElementName=p23, Path=IsSelected}" Value="True">
+                    <Setter Property="Text" Value="{Binding ElementName=netto, Path=Text, Converter={StaticResource ResourceKey=burito}, ConverterParameter=23}"></Setter>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding ElementName=p8, Path=IsSelected}" Value="True">
+                    <Setter Property="Text" Value="{Binding ElementName=netto, Path=Text, Converter={StaticResource ResourceKey=burito}, ConverterParameter=8}"></Setter>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding ElementName=p7, Path=IsSelected}" Value="True">
+                    <Setter Property="Text" Value="{Binding ElementName=netto, Path=Text, Converter={StaticResource ResourceKey=burito}, ConverterParameter=7}"></Setter>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding ElementName=p5, Path=IsSelected}" Value="True">
+                    <Setter Property="Text" Value="{Binding ElementName=netto, Path=Text, Converter={StaticResource ResourceKey=burito}, ConverterParameter=5}"></Setter>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+    <DockPanel>
+        <StackPanel DockPanel.Dock="Top" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Stretch">
+            <TextBlock Style="{StaticResource h1}">Faktura</TextBlock>
+            <TextBlock Style="{StaticResource h2}">nr 487236873AF</TextBlock>
+        </StackPanel>
+        <StackPanel DockPanel.Dock="Top" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Stretch">
+            <StackPanel Orientation="Horizontal">
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Left">
+                    <Label Style="{StaticResource label}">Nazwa klienta:</Label>
+                    <Label Style="{StaticResource label}">NIP klienta:</Label>
+                    <Label Style="{StaticResource label}">Adres klienta:</Label>
+                    <Label Style="{StaticResource label}">Kwota netto[PLN]:</Label>
+                    <Label Style="{StaticResource label}">Podatek VAT:</Label>
+                    <Label Style="{StaticResource label}">Kwota Brutto:</Label>
+                </StackPanel>
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Right">
+                    <TextBox></TextBox>
+                    <TextBox></TextBox>
+                    <TextBox></TextBox>
+                    <TextBox x:Name="netto"></TextBox>
+                    <ComboBox x:Name="comboVATBox">
+                        <ComboBoxItem x:Name="zw" Content="zwolniony"></ComboBoxItem>
+                        <ComboBoxItem x:Name="p23" Content="23%" IsSelected="True"></ComboBoxItem>
+                        <ComboBoxItem x:Name="p8" Content="8%"></ComboBoxItem>
+                        <ComboBoxItem x:Name="p7" Content="7%"></ComboBoxItem>
+                        <ComboBoxItem x:Name="p5" Content="5%"></ComboBoxItem>
+                        <ComboBoxItem x:Name="p0" Content="0%"></ComboBoxItem>
+                    </ComboBox>
+                    <TextBox Style="{StaticResource brutto}"></TextBox>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+    </DockPanel>
+</Window>
