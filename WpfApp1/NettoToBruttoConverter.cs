@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Data;
@@ -23,7 +24,16 @@ namespace WpfApp1
                 case "7": vat = 1.07; break;
                 case "5": vat = 1.05; break;
             }
-            double netto = Double.Parse(value.ToString());
+            double netto = 0;
+            try
+            {
+                netto = Double.Parse(value.ToString());
+            }
+            catch
+            {
+                netto = 0;
+            }
+
             return (netto * vat).ToString();
         }
 

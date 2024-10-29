@@ -7,11 +7,13 @@
         <Style TargetType="TextBlock" x:Key="h1">
             <Setter Property="FontSize" Value="34"></Setter>
             <Setter Property="FontWeight" Value="Bold"></Setter>
+            <Setter Property="Foreground" Value="Bisque"></Setter>
         </Style>
 
         <Style TargetType="TextBlock" x:Key="h2">
             <Setter Property="FontSize" Value="17"></Setter>
             <Setter Property="FontWeight" Value="Bold"></Setter>
+            <Setter Property="Foreground" Value="Bisque"></Setter>
         </Style>
 
         <Style TargetType="Label" x:Key="label">
@@ -33,6 +35,12 @@
             <Setter Property="HorizontalAlignment" Value="Right"></Setter>
             <Setter Property="Foreground" Value="DarkGreen"></Setter>
             <Setter Property="Margin" Value="0, 5, 0, 6"></Setter>
+        </Style>
+
+        <Style TargetType="Button">
+            <Setter Property="Margin" Value="10, 0, 10, 0"></Setter>
+            <Setter Property="Height" Value="28"></Setter>
+            <Setter Property="Background" Value="AntiqueWhite"></Setter>
         </Style>
     </Application.Resources>
 </Application>

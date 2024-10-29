@@ -8,6 +8,7 @@
         Title="Faktury" Height="450" Width="800">
     <Window.Resources>
         <local:NettoToBruttoConverter x:Key="burito"></local:NettoToBruttoConverter>
+        <local:ValereConvetere x:Key="Valorant"></local:ValereConvetere>
         <Style TargetType="TextBox" x:Key="brutto">
             <Setter Property="Width" Value="175"></Setter>
             <Setter Property="HorizontalAlignment" Value="Right"></Setter>
@@ -29,12 +30,30 @@
                 </DataTrigger>
             </Style.Triggers>
         </Style>
+        <!--<Style TargetType="TextBox">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding ElementName=NONE, Path=IsSelected}" Value="True">
+                    <Setter Property="Text" Value="{Binding ElementName=brutto, Path=Text, Converter={StaticResource ResourceKey=Valorant}, ConverterParameter=PLN}"></Setter>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding ElementName=USD, Path=IsSelected}" Value="True">
+                    <Setter Property="Text" Value="{Binding ElementName=brutto, Path=Text, Converter={StaticResource ResourceKey=Valorant}, ConverterParameter=USD}"></Setter>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding ElementName=EUR, Path=IsSelected}" Value="True">
+                    <Setter Property="Text" Value="{Binding ElementName=brutto, Path=Text, Converter={StaticResource ResourceKey=Valorant}, ConverterParameter=EUR}"></Setter>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding ElementName=CHF, Path=IsSelected}" Value="True">
+                    <Setter Property="Text" Value="{Binding ElementName=brutto, Path=Text, Converter={StaticResource ResourceKey=Valorant}, ConverterParameter=CHF}"></Setter>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>-->
     </Window.Resources>
-    <DockPanel>
-        <StackPanel DockPanel.Dock="Top" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Stretch">
-            <TextBlock Style="{StaticResource h1}">Faktura</TextBlock>
-            <TextBlock Style="{StaticResource h2}">nr 487236873AF</TextBlock>
-        </StackPanel>
+    <DockPanel Background="LightYellow">
+        <Border DockPanel.Dock="Top" Background="DarkOliveGreen">
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Stretch">
+                <TextBlock Style="{StaticResource h1}">Faktura</TextBlock>
+                <TextBlock Style="{StaticResource h2}">nr 487236873AF</TextBlock>
+            </StackPanel>
+        </Border>
         <StackPanel DockPanel.Dock="Top" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Stretch">
             <StackPanel Orientation="Horizontal">
                 <StackPanel Orientation="Vertical" HorizontalAlignment="Left">
@@ -49,7 +68,7 @@
                     <TextBox></TextBox>
                     <TextBox></TextBox>
                     <TextBox></TextBox>
-                    <TextBox x:Name="netto"></TextBox>
+                    <TextBox x:Name="netto" Text="0"></TextBox>
                     <ComboBox x:Name="comboVATBox">
                         <ComboBoxItem x:Name="zw" Content="zwolniony"></ComboBoxItem>
                         <ComboBoxItem x:Name="p23" Content="23%" IsSelected="True"></ComboBoxItem>
@@ -58,9 +77,20 @@
                         <ComboBoxItem x:Name="p5" Content="5%"></ComboBoxItem>
                         <ComboBoxItem x:Name="p0" Content="0%"></ComboBoxItem>
                     </ComboBox>
-                    <TextBox Style="{StaticResource brutto}"></TextBox>
+                    <TextBox Style="{StaticResource brutto}" x:Name="brutto"></TextBox>
                 </StackPanel>
             </StackPanel>
+            <!--<ComboBox x:Name="comboValereBox">
+                <ComboBoxItem x:Name="NONE" Content="PLN" IsSelected="True"></ComboBoxItem>
+                <ComboBoxItem x:Name="USD" Content="USD"></ComboBoxItem>
+                <ComboBoxItem x:Name="EUR" Content="EUR"></ComboBoxItem>
+                <ComboBoxItem x:Name="CHF" Content="CHF"></ComboBoxItem>
+            </ComboBox>-->
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" DockPanel.Dock="Bottom">
+            <Button Foreground="Red">Do poprawy</Button>
+            <Button Foreground="Blue">Do zatwierdzenia</Button>
+            <Button Foreground="Green">Do kasy</Button>
         </StackPanel>
     </DockPanel>
 </Window>
